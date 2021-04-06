@@ -17,16 +17,6 @@ from task_2_packet import *
 # исключениями и логгирование.
 
 
-class UnknownCommandError(Exception):
-    def __init__(self, command, message="Unknown command"):
-        self.command = command
-        self.message = message
-        super(UnknownCommandError, self).__init__(message)
-
-    def __str__(self):
-        return f"{self.command} -> {self.message}"
-
-
 if __name__ == '__main__':
     staff = Staff.Staff()
     logging.basicConfig(
@@ -79,7 +69,7 @@ if __name__ == '__main__':
                 print("save <имя файла> - сохранить данные в файл;")
                 print("exit - выход из программы;")
             else:
-                raise UnknownCommandError(command)
+                raise UnknownCommandError.UnknownCommandError(command)
         except Exception as exc:
             logging.error(f"Ошибка: {exc}")
             print(exc, file=sys.stderr)
